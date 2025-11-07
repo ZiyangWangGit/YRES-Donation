@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Alilato+Arabic:wght@400;700&display=swap');
 @import "tailwindcss";
 
-.navbar-font {
+* {
   font-family: 'Alilato Arabic', sans-serif;
 }
 
