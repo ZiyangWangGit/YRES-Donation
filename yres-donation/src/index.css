@@ -1,10 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Alilato+Arabic:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@900&family=Overpass:wght@300;400;700&display=swap');
 @import "tailwindcss";
-
-* {
-  font-family: 'Alilato Arabic', sans-serif;
-}
 
 body {
   background-color: #f8f8f8;
+}
+
+.font-heading {
+  font-family: 'Catamaran', sans-serif;
+  font-weight: 900; 
+}
+
+.font-subheading {
+  font-family: 'Overpass', sans-serif;
+  font-weight: 700; 
+}
+
+.font-body {
+  font-family: 'Overpass', sans-serif;
+  font-weight: 300; 
 }
