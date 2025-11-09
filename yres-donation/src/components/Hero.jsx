@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ReactTyped } from "react-typed";
 import { donationData } from "../data/mockData.js";
+import donationImg from "../assets/donation.jpg";
 import "../index.css";
 
 const Hero = () => {
@@ -13,10 +14,16 @@ const Hero = () => {
   );
 
   return (
-    
-    <div className="text-gray-900 bg-white pt-16 sm:pt-20">
-      <div className="max-w-[900px] w-full min-h-screen mx-auto text-center flex flex-col justify-center px-4 py-8">
-        <div className="text-gray-900 bg-white pt-26 sm:pt-28">
+    <div className="text-gray-900 bg-white pt-20 sm:pt-20">
+      <div className="pt-10 sm:pt-10">
+        <img
+          className="w-full h-auto max-h-70 object-cover object-[center_60%] rounded-lg shadow-md mt-16"
+          src={donationImg}
+          alt="Donation"
+        />
+      </div>
+      <div className="max-w-[1500px] w-full min-h-screen mx-auto text-center flex flex-col justify-center px-4 py-8">
+        <div className="text-gray-900 bg-white ">
           {/* Shadow Box wrapping hero content */}
           <div className="bg-white rounded-2xl shadow-xl max-w-[900px] mx-auto p-8">
             {/* Intro Text */}
@@ -35,7 +42,7 @@ const Hero = () => {
                 Support
               </p>
               <ReactTyped
-                className="font-subheading text-[#3D96AB] text-2xl md:text-3xl font-semibold"
+                className="font-subheading text-[#FFD13A] text-2xl md:text-3xl font-semibold"
                 strings={[
                   "Our Students' Dreams",
                   "Innovative Education Programs",
@@ -57,7 +64,7 @@ const Hero = () => {
         </div>
 
         {/* Cards */}
-        <div className="mt-8 grid gap-12 md:grid-cols-3">
+        <div className="mt-16 grid gap-10 md:grid-cols-3">
           {[
             {
               title: "Supporting Students",
@@ -80,7 +87,7 @@ const Hero = () => {
           ].map((card, i) => (
             <div
               key={i}
-              className="max-w-sm rounded overflow-hidden shadow-lg bg-gray-50 text-gray-900"
+              className="w-full rounded overflow-hidden shadow-lg bg-gray-50 text-gray-900"
             >
               <img className="w-full" src={card.img} alt={card.title} />
               <div className="px-6 py-4">
@@ -89,12 +96,14 @@ const Hero = () => {
               </div>
               <div className="px-6 pt-4 pb-2">
                 {card.tags.map((tag, j) => (
-                  <span
+                  <a
                     key={j}
+                    href="https://x.com/york_education"
+                    target="_blank"
                     className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
                   >
                     {tag}
-                  </span>
+                  </a>
                 ))}
               </div>
             </div>
@@ -102,7 +111,7 @@ const Hero = () => {
         </div>
 
         {/* Buttons */}
-        <div className="font-body flex flex-col sm:flex-row justify-center items-center gap-10 my-8">
+        <div className="font-body flex flex-col sm:flex-row justify-center items-center gap-10 mt-12">
           <a
             href="https://www.canadahelps.org/en/charities/yorkeducation/"
             target="_blank"
@@ -121,54 +130,67 @@ const Hero = () => {
           </button>
         </div>
 
-        {/* Campaign Info */}
-        {showCampaignInfo && (
-          <div className="bg-gray-100 rounded-xl shadow-lg p-6 text-left mx-auto w-full sm:w-[500px] transition-all duration-500">
-            <h2 className="font-subheading text-xl mb-2 text-[#3D96AB]">
-              {donationData.campaign}
-            </h2>
+{/* Campaign Info */}
+{showCampaignInfo && (
+  <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    {donationData.map((campaign, index) => {
+      const percentage = Math.min(
+        Math.round((campaign.raised / campaign.goal) * 100),
+        100
+      );
 
-            <div className="mb-3">
-              <p className="font-body text-md">
-                Goal: {donationData.currency}{" "}
-                {donationData.goal.toLocaleString()}
-              </p>
-              <p className="font-body text-md">
-                Raised: {donationData.currency}{" "}
-                {donationData.raised.toLocaleString()} ({percentage}%)
-              </p>
-              <p className="font-body text-md">Donors: {donationData.donors}</p>
-            </div>
+      return (
+        <div
+          key={index}
+          className="bg-gray-100 rounded-xl shadow-lg p-6 text-left transition-all duration-500 hover:shadow-xl"
+        >
+          <h2 className="font-subheading text-xl mb-2 text-[#3D96AB]">
+            {campaign.campaign}
+          </h2>
 
-            {/* Progress Bar */}
-            <div className="relative w-full bg-gray-300 rounded-full h-6 mb-4">
-              <div
-                className="bg-[#3D96AB] h-6 rounded-full transition-all duration-500"
-                style={{ width: `${percentage}%` }}
-              ></div>
-              <span className="absolute inset-0 flex items-center justify-center font-bold text-white">
-                {percentage}%
-              </span>
-            </div>
-
-            {/* Recent Donors */}
-            {donationData.recentDonors && (
-              <div>
-                <h3 className="font-subheading text-md mb-1 text-[#3D96AB]">
-                  Recent Donors
-                </h3>
-                <ul className="font-body text-sm list-disc list-inside text-gray-700">
-                  {donationData.recentDonors.map((donor, index) => (
-                    <li key={index}>
-                      {donor.name}: {donationData.currency}{" "}
-                      {donor.amount.toLocaleString()}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+          <div className="mb-3">
+            <p className="font-body text-md">
+              Goal: {campaign.currency} {campaign.goal.toLocaleString()}
+            </p>
+            <p className="font-body text-md">
+              Raised: {campaign.currency} {campaign.raised.toLocaleString()} ({percentage}%)
+            </p>
+            <p className="font-body text-md">Donors: {campaign.donors}</p>
           </div>
-        )}
+
+          {/* Progress Bar */}
+          <div className="relative w-full bg-gray-300 rounded-full h-5 mb-4">
+            <div
+              className="bg-[#3D96AB] h-5 rounded-full transition-all duration-500"
+              style={{ width: `${percentage}%` }}
+            ></div>
+            <span className="absolute inset-0 flex items-center justify-center font-bold text-white text-sm">
+              {percentage}%
+            </span>
+          </div>
+
+          {/* Recent Donors */}
+          {campaign.recentDonors && campaign.recentDonors.length > 0 && (
+            <div>
+              <h3 className="font-subheading text-md mb-1 text-[#3D96AB]">
+                Recent Donors
+              </h3>
+              <ul className="font-body text-sm list-disc list-inside text-gray-700">
+                {campaign.recentDonors.map((donor, i) => (
+                  <li key={i}>
+                    {donor.name}: {campaign.currency}{" "}
+                    {donor.amount.toLocaleString()}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      );
+    })}
+  </div>
+)}
+
       </div>
     </div>
   );
