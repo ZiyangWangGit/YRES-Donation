@@ -2,6 +2,29 @@
 
 This project is a donation platform for **York Region Educational Services (YRES)**, built using **React** and **Vite**. It provides a visually engaging interface for users to view campaigns, track donation progress, and contribute directly to each campaign.
 
+## Getting Started
+
+### Prerequisites
+
+- Node.js >= 18  
+- npm or yarn  
+
+### Installation
+1. Clone the repository:
+git clone https://github.com/ZiyangWangGit/YRES-Donation.git
+cd YRES-Donation
+
+2. Install dependencies:
+npm install
+# or
+yarn install
+
+3. Run the development server:
+npm run dev
+# or
+yarn dev
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
