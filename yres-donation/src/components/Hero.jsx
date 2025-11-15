@@ -5,7 +5,7 @@ import donationImg from "../assets/donation.jpg";
 import "../index.css";
 
 const Hero = () => {
-  const [showCampaignInfo, setShowCampaignInfo] = useState(false);
+
 
   // Calculate percentage for progress bar
   const percentage = Math.min(
@@ -110,86 +110,76 @@ const Hero = () => {
           ))}
         </div>
 
-        {/* Buttons */}
-        <div className="font-body flex flex-col sm:flex-row justify-center items-center gap-10 mt-12">
-          <a
-            href="https://www.canadahelps.org/en/charities/yorkeducation/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <button className="bg-[#3D96AB] text-white w-[200px] sm:w-[220px] rounded-md font-bold py-3 hover:bg-[#2B7A88] transition duration-300">
-              Donate Now
-            </button>
-          </a>
-
-          <button
-            className="bg-[#FFD13A] text-[#3D96AB] w-[200px] sm:w-[220px] rounded-md font-bold py-3 hover:bg-[#3D96AB] hover:text-white transition duration-300"
-            onClick={() => setShowCampaignInfo(!showCampaignInfo)}
-          >
-            {showCampaignInfo ? "Hide Campaign Info" : "Show Campaign Info"}
-          </button>
-        </div>
-
 {/* Campaign Info */}
-{showCampaignInfo && (
-  <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-    {donationData.map((campaign, index) => {
-      const percentage = Math.min(
-        Math.round((campaign.raised / campaign.goal) * 100),
-        100
-      );
+<div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+  {donationData.map((campaign, index) => {
+    const percentage = Math.min(
+      Math.round((campaign.raised / campaign.goal) * 100),
+      100
+    );
 
-      return (
-        <div
-          key={index}
-          className="bg-gray-100 rounded-xl shadow-lg p-6 text-left transition-all duration-500 hover:shadow-xl"
-        >
-          <h2 className="font-subheading text-xl mb-2 text-[#3D96AB]">
-            {campaign.campaign}
-          </h2>
+    return (
+      <div
+        key={index}
+        className="bg-gray-100 rounded-xl shadow-lg p-6 text-left transition-all duration-500 hover:shadow-xl"
+      >
+        <h2 className="font-subheading text-xl mb-2 text-[#3D96AB]">
+          {campaign.campaign}
+        </h2>
 
-          <div className="mb-3">
-            <p className="font-body text-md">
-              Goal: {campaign.currency} {campaign.goal.toLocaleString()}
-            </p>
-            <p className="font-body text-md">
-              Raised: {campaign.currency} {campaign.raised.toLocaleString()} ({percentage}%)
-            </p>
-            <p className="font-body text-md">Donors: {campaign.donors}</p>
-          </div>
-
-          {/* Progress Bar */}
-          <div className="relative w-full bg-gray-300 rounded-full h-5 mb-4">
-            <div
-              className="bg-[#3D96AB] h-5 rounded-full transition-all duration-500"
-              style={{ width: `${percentage}%` }}
-            ></div>
-            <span className="absolute inset-0 flex items-center justify-center font-bold text-white text-sm">
-              {percentage}%
-            </span>
-          </div>
-
-          {/* Recent Donors */}
-          {campaign.recentDonors && campaign.recentDonors.length > 0 && (
-            <div>
-              <h3 className="font-subheading text-md mb-1 text-[#3D96AB]">
-                Recent Donors
-              </h3>
-              <ul className="font-body text-sm list-disc list-inside text-gray-700">
-                {campaign.recentDonors.map((donor, i) => (
-                  <li key={i}>
-                    {donor.name}: {campaign.currency}{" "}
-                    {donor.amount.toLocaleString()}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+        <div className="mb-3">
+          <p className="font-body text-md">
+            Goal: {campaign.currency} {campaign.goal.toLocaleString()}
+          </p>
+          <p className="font-body text-md">
+            Raised: {campaign.currency} {campaign.raised.toLocaleString()} ({percentage}%)
+          </p>
+          <p className="font-body text-md">Donors: {campaign.donors}</p>
         </div>
-      );
-    })}
-  </div>
-)}
+
+        {/* Progress Bar */}
+        <div className="relative w-full bg-gray-300 rounded-full h-5 mb-4">
+          <div
+            className="bg-[#3D96AB] h-5 rounded-full transition-all duration-500"
+            style={{ width: `${percentage}%` }}
+          ></div>
+          <span className="absolute inset-0 flex items-center justify-center font-bold text-white text-sm">
+            {percentage}%
+          </span>
+        </div>
+
+        {/* Recent Donors */}
+        {campaign.recentDonors && campaign.recentDonors.length > 0 && (
+          <div>
+            <h3 className="font-subheading text-md mb-1 text-[#3D96AB]">
+              Recent Donors
+            </h3>
+            <ul className="font-body text-sm list-disc list-inside text-gray-700">
+              {campaign.recentDonors.map((donor, i) => (
+                <li key={i}>
+                  {donor.name}: {campaign.currency} {donor.amount.toLocaleString()}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Donate Now Button */}
+        <a
+          href={campaign.donationUrl || "https://www.canadahelps.org/en/charities/yorkeducation/"}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <button className="mt-5 bg-[#3D96AB] w-full text-white rounded-md font-bold py-3 hover:bg-[#2B7A88] transition duration-300">
+            Donate Now
+          </button>
+        </a>
+      </div>
+    );
+  })}
+</div>
+
+
 
       </div>
     </div>

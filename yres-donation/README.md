@@ -1,3 +1,7 @@
+# YRES Donation Project
+
+This project is a donation platform for **York Region Educational Services (YRES)**, built using **React** and **Vite**. It provides a visually engaging interface for users to view campaigns, track donation progress, and contribute directly to each campaign.
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -14,3 +18,4 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
