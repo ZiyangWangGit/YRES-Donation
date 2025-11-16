@@ -15,15 +15,25 @@ git clone https://github.com/ZiyangWangGit/YRES-Donation.git
 cd YRES-Donation
 
 2. Install dependencies:
-npm install
-# or
-yarn install
+npm install or yarn install
 
 3. Run the development server:
-npm run dev
-# or
-yarn dev
+npm run dev or yarn dev
 
+### Data Structure
+Each campaign in donationData uses this format:
+
+{
+  campaign: string,        // Campaign title
+  goal: number,            // Fundraising goal
+  raised: number,          // Amount raised
+  donors: number,          // Total donors
+  currency: string,        // Currency symbol
+  recentDonors: [          // Recent donors
+    { name: string, amount: number }
+  ],
+  donateUrl: string        // External donation link
+}
 
 # React + Vite
 
