@@ -23,16 +23,16 @@ npm run dev or yarn dev
 ### Data Structure
 Each campaign in donationData uses this format:
 
-{
-  campaign: string,        // Campaign title
-  goal: number,            // Fundraising goal
-  raised: number,          // Amount raised
-  donors: number,          // Total donors
-  currency: string,        // Currency symbol
-  recentDonors: [          // Recent donors
+{<br>
+&nbsp;&nbsp;campaign: string,        // Campaign title <br>
+&nbsp;&nbsp;goal: number,            // Fundraising goal <br>
+&nbsp;&nbsp;raised: number,          // Amount raised <br>
+&nbsp;&nbsp;donors: number,          // Total donors <br>
+&nbsp;&nbsp;currency: string,        // Currency symbol <br>
+&nbsp;&nbsp;recentDonors: [          // Recent donors
     { name: string, amount: number }
-  ],
-  donateUrl: string        // External donation link
+  ],<br>
+&nbsp;&nbsp;donateUrl: string        // External donation link<br>
 }
 
 # React + Vite
